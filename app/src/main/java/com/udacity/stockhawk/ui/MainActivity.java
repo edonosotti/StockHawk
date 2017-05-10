@@ -1,6 +1,7 @@
 package com.udacity.stockhawk.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -19,9 +20,11 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.udacity.stockhawk.Common;
 import com.udacity.stockhawk.R;
 import com.udacity.stockhawk.data.Contract;
 import com.udacity.stockhawk.data.PrefUtils;
+import com.udacity.stockhawk.data.StockHistoryDataItem;
 import com.udacity.stockhawk.sync.QuoteSyncJob;
 
 import butterknife.BindView;
@@ -45,8 +48,12 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     private StockAdapter adapter;
 
     @Override
-    public void onClick(String symbol) {
-        Timber.d("Symbol clicked: %s", symbol);
+    public void onClick(StockHistoryDataItem stockHistoryDataItem) {
+        Timber.d("Symbol clicked: %s", stockHistoryDataItem.symbol);
+        Intent intent = new Intent(MainActivity.this, StockHistory.class);
+        intent.putExtra(Common.STOCK_SYMBOL, stockHistoryDataItem.symbol);
+        intent.putExtra(Common.STOCK_HISTORY, stockHistoryDataItem.history);
+        startActivity(intent);
     }
 
     @Override

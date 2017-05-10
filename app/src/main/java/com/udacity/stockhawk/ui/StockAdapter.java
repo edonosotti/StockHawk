@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.udacity.stockhawk.R;
 import com.udacity.stockhawk.data.Contract;
 import com.udacity.stockhawk.data.PrefUtils;
+import com.udacity.stockhawk.data.StockHistoryDataItem;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -104,7 +105,7 @@ class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockViewHolder> {
 
 
     interface StockAdapterOnClickHandler {
-        void onClick(String symbol);
+        void onClick(StockHistoryDataItem stockHistoryDataItem);
     }
 
     class StockViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -128,8 +129,12 @@ class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockViewHolder> {
         public void onClick(View v) {
             int adapterPosition = getAdapterPosition();
             cursor.moveToPosition(adapterPosition);
+            StockHistoryDataItem stockHistory = new StockHistoryDataItem();
             int symbolColumn = cursor.getColumnIndex(Contract.Quote.COLUMN_SYMBOL);
-            clickHandler.onClick(cursor.getString(symbolColumn));
+            int historyColumn = cursor.getColumnIndex(Contract.Quote.COLUMN_HISTORY);
+            stockHistory.symbol = cursor.getString(symbolColumn);
+            stockHistory.history = cursor.getString(historyColumn);
+            clickHandler.onClick(stockHistory);
 
         }
 
