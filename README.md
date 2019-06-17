@@ -1,3 +1,6 @@
+[![codebeat badge](https://codebeat.co/badges/9318f93b-0afe-47d0-b6a8-72f31c5ec3e1)](https://codebeat.co/projects/github-com-edonosotti-stockhawk-master)
+[![Maintainability](https://api.codeclimate.com/v1/badges/1667d8fec61b6aea283e/maintainability)](https://codeclimate.com/github/edonosotti/StockHawk/maintainability)
+
 **Forked from [udacity/StockHawk](https://github.com/udacity/StockHawk)**
 
 # Stock Hawk
